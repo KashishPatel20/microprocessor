@@ -1,0 +1,93 @@
+public class Bit {
+    public enum boolValues { FALSE, TRUE }
+    private boolValues values; // stores whether the bit is TRUE or FALSE
+
+    public Bit(boolean value) {
+        if(value){
+            this.values = boolValues.TRUE;
+        }else{
+            this.values = boolValues.FALSE;
+        }
+    }
+
+    public boolValues getValue() {
+
+        return values;
+    }
+
+    public void assign(boolValues value) {
+
+        this.values = value;
+    }
+
+    public void and(Bit b2, Bit result) {
+        and(this,b2, result);
+    }
+
+    public static void and(Bit b1, Bit b2, Bit result) {
+        if(b1.values == boolValues.TRUE) {
+            if(b2.values == boolValues.TRUE) {
+                result.assign(boolValues.TRUE);
+                return;
+            }
+        }
+        result.assign(boolValues.FALSE);
+    }
+
+    public void or(Bit b2, Bit result) {
+        or(this,b2, result);
+    }
+
+    public static void or(Bit b1, Bit b2, Bit result) {
+        if(b1.values == boolValues.FALSE){
+            if(b2.values == boolValues.FALSE){
+                result.assign((boolValues.FALSE));
+                return;
+            }
+        }if (b2.values == boolValues.TRUE) {
+            result.assign(boolValues.TRUE);
+            return;
+        }
+        result.assign(boolValues.TRUE);
+    }
+
+    public void xor(Bit b2, Bit result) {
+        xor(this,b2, result);
+    }
+
+    public static void xor(Bit b1, Bit b2, Bit result) {
+        if (b1.values == boolValues.TRUE) {
+            if (b2.values == boolValues.FALSE) {
+                result.assign(boolValues.TRUE);
+                return;
+            }
+        }
+        if (b1.values == boolValues.FALSE) {
+            if (b2.values == boolValues.TRUE) {
+                result.assign(boolValues.TRUE);
+                return;
+            }
+        }
+        result.assign(boolValues.FALSE);
+    }
+    public static void not(Bit b2, Bit result) {
+        if(b2.values == boolValues.FALSE){
+            result.assign(boolValues.TRUE);
+        }
+        else {
+            result.assign(boolValues.FALSE);
+        }
+    }
+
+    public void not(Bit result) {
+        not(this,result);
+    }
+
+    public String toString() {
+        if(values == boolValues.TRUE)
+            return "t";
+        else{
+            return "f";
+        }
+    }
+}
